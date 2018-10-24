@@ -43,6 +43,15 @@ describe Taxi do
    expect(@a_taxi.riderslist.length).to be 1
    expect(@a_taxi.riderslist[0]).to eq "Janice"
  end
+
+ # it "has a dropoff method" do
+ #   expect(@a_taxi).to respond_to(:dropff)
+ # end
+ #
+ # it "can remove rider from riderslist" do
+ #   @a_taxi.pickup("EricU")
+ #   @a_taxi.dropoff
+ #end
 end
 
 describe Taxi_Service do
@@ -100,6 +109,5 @@ it "can fill subsequent taxis" do
   expect(@taxi_service.rider_queue.length). to be 0
   # expect(@taxi1.riderslist.length).to be 2
 end
-
 
 end

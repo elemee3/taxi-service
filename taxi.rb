@@ -43,14 +43,22 @@ class Taxi_Service
   end
 
   def assign_taxi
-    while @rider_queue.length > 0
-      if @taxi_queue[0].pickup(@rider_queue[0])
-        @rider_queue.shift()
-      else
-        @taxi_queue.shift()
-      end
+    # messages = []
+
+        while @taxi_queue.length > 0 || @rider_queue.length > 0
+          if @taxi_queue[0].pickup(@rider_queue[0])
+            # puts @rider_queue[0]
+            @rider_queue.shift()
+            # messages << "A passenger got picked up"
+          elsif  !@taxi_queue[0].pickup(@rider_queue[0])
+            @taxi_queue.shift()
+            # messages << "Moving to next taxi"
+          end
+        end
+      # puts messages
     end
-  end
+
+
 end
 
 taxi_service = Taxi_Service.new
@@ -63,7 +71,10 @@ taxi_service.addtaxi(taxi2)
 taxi_service.addrider("EricU")
 taxi_service.addrider("Sunil")
 taxi_service.addrider("Dakota")
-taxi_service.assign_taxi
-puts "first taxi list = #{taxi1.riderslist}"
-puts taxi2.riderslist
+taxi_service.addrider("Da")
+taxi_service.addrider("Dak")
+p taxi_service.assign_taxi
+p "#{taxi1.riderslist} #{taxi2.riderslist}"
+# puts "first taxi list = #{taxi1.riderslist}"
+# puts taxi2.riderslist
 # puts "passenger list  #{taxi_service.taxi_queue[0].riderslist}"
